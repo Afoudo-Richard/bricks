@@ -41,3 +41,9 @@ flutter_icons:
   adaptive_icon_background: "assets/images/logo.png"
   ios: true
   image_path: "assets/images/logo.png"
+
+
+## update sdk (important)
+
+  minSdkVersion 21//flutter.minSdkVersion
+  targetSdkVersion 33 //flutter.targetSdkVersion

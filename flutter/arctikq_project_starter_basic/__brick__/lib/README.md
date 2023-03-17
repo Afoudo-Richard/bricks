@@ -36,3 +36,9 @@ flutter_icons:
 
 ### use command to launch Icon
 flutter pub run flutter_launcher_icons
+
+
+## update sdk (important)
+
+  minSdkVersion 21//flutter.minSdkVersion
+  targetSdkVersion 33 //flutter.targetSdkVersion
