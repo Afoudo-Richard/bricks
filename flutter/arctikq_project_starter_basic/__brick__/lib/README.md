@@ -2,7 +2,9 @@
 
 ## dependencies
 
-
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
   sizer: ^2.0.15
   cached_network_image: ^3.2.1
   path_provider: ^2.0.11
@@ -31,3 +33,6 @@ flutter_icons:
   adaptive_icon_background: "assets/images/logo.png"
   ios: true
   image_path: "assets/images/logo.png"
+
+### use command to launch Icon
+flutter pub run flutter_launcher_icons
