@@ -1,0 +1,49 @@
+name: {{project_name.snakeCase()}}
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  sizer: ^2.0.15
+  cached_network_image: ^3.2.1
+  path_provider: ^2.0.11
+  share_plus: ^4.0.10
+  image_picker: ^0.8.3+3   # may remove
+  url_launcher: ^6.1.5
+  awesome_notifications: ^0.7.4+1
+  connectivity_wrapper: ^1.1.0
+  flutter_native_splash: ^2.2.16
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.11.0
+  flutter_lints: ^2.0.0
+
+flutter:
+  generate: true #run command:  flutter gen-l10n
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+flutter_icons:
+  android: "ic_launcher"
+  adaptive_icon_background: "assets/images/logo.png"
+  ios: true
+  image_path: "assets/images/logo.png"
+# command : flutter pub run flutter_launcher_icons
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/images/logo.png"
+
+# command : flutter pub run flutter_native_splash:create
