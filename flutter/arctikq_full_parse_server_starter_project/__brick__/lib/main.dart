@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:{{project_name.snakeCase()}}/app.dart';
@@ -61,15 +62,7 @@ registerParseServer() async {
     ),
   );
 
-  ParseCoreData().registerSubClass(Vehicle.keyTableName, () => Vehicle());
-  ParseCoreData().registerSubClass(Brand.keyTableName, () => Brand());
-  ParseCoreData()
-      .registerSubClass(ConditionType.keyTableName, () => ConditionType());
-  ParseCoreData().registerSubClass(FuelType.keyTableName, () => FuelType());
-  ParseCoreData().registerSubClass(Model.keyTableName, () => Model());
-  ParseCoreData().registerSubClass(
-      TransmissionType.keyTableName, () => TransmissionType());
-  ParseCoreData().registerSubClass(Store.keyTableName, () => Store());
+  // ParseCoreData().registerSubClass(Vehicle.keyTableName, () => Vehicle());
 }
 
 void initializeAwesomeNotification() {
