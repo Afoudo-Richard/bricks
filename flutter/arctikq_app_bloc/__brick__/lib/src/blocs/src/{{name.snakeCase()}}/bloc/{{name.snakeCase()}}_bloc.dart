@@ -13,7 +13,7 @@ class {{name.pascalCase()}}Bloc
 
   Future<void> _on{{name.pascalCase()}}Changed(
     {{name.pascalCase()}}Changed event,
-    emit,
+    Emitter<{{name.pascalCase()}}State> emit,
   ) async {
     
   }

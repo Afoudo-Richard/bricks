@@ -1,7 +1,7 @@
 part of '{{name.snakeCase()}}_bloc.dart';
 
-@immutable
 abstract class {{name.pascalCase()}}Event extends Equatable {
+  {{name.pascalCase()}}Event();
   @override
   List<Object> get props => [];
 }
