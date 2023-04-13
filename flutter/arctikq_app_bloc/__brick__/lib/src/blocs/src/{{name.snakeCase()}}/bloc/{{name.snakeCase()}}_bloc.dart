@@ -7,7 +7,7 @@ part '{{name.snakeCase()}}_state.dart';
 
 class {{name.pascalCase()}}Bloc
     extends Bloc<{{name.pascalCase()}}Event, {{name.pascalCase()}}State> {
-  AppBottomNavigationBarBloc() : super({{name.pascalCase()}}State()) {
+  {{name.pascalCase()}}Bloc() : super({{name.pascalCase()}}State()) {
     on<{{name.pascalCase()}}Changed>(_on{{name.pascalCase()}}Changed);
   }
 

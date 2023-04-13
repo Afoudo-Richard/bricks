@@ -1,5 +1,5 @@
 name: arctikq_app_bloc
-description: A new brick created with the Mason CLI.
+description: ArcTikq App bloc brick for easy creating bricks.
 
 # The following defines the brick repository url.
 # Uncomment and update the following line before publishing the brick.
