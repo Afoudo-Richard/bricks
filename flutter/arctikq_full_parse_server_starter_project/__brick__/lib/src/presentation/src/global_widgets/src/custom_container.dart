@@ -13,6 +13,7 @@ class CustomContainer extends StatelessWidget {
     this.width,
     this.height,
     this.boxShadow,
+    this.onTap,
   }) : super(key: key);
 
   final Color? backgroundColor;
@@ -25,31 +26,35 @@ class CustomContainer extends StatelessWidget {
   final double? width;
   final double? height;
   final List<BoxShadow>? boxShadow;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      padding: padding ?? const EdgeInsets.all(10),
-      margin: margin,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        border: border,
-        color: backgroundColor ?? Colors.white,
-        borderRadius: borderRadius ?? BorderRadius.circular(10),
-        image: backgroundImage,
-        boxShadow: boxShadow ??
-            const [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 40,
-                spreadRadius: 10,
-                offset: Offset(0, 4),
-              ),
-            ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: width,
+        height: height,
+        padding: padding ?? const EdgeInsets.all(10),
+        margin: margin,
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          border: border,
+          color: backgroundColor ?? Colors.white,
+          borderRadius: borderRadius ?? BorderRadius.circular(10),
+          image: backgroundImage,
+          boxShadow: boxShadow ??
+              const [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 40,
+                  spreadRadius: 10,
+                  offset: Offset(0, 4),
+                ),
+              ],
+        ),
+        child: child,
       ),
-      child: child,
     );
   }
 }

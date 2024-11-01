@@ -123,18 +123,21 @@ class CustomInput extends StatelessWidget {
                       ),
                     )
                   : Expanded(
-                      child: TextFormField(
-                        controller: controller,
-                        minLines: inputMinLines,
-                        maxLines: inputObscureText ? 1 : inputMaxLines,
-                        initialValue: inputInitialValue,
-                        keyboardType: inputKeyBoardType,
-                        obscureText: inputObscureText,
-                        style: inputTextStyles,
-                        decoration: inputDecorations,
-                        onChanged: onChanged,
-                        textCapitalization: inputTextCapitalization,
-                        enabled: inputEnabled,
+                      child: Transform.translate(
+                        offset: Offset(0, 3.sp),
+                        child: TextFormField(
+                          controller: controller,
+                          minLines: inputMinLines,
+                          maxLines: inputObscureText ? 1 : inputMaxLines,
+                          initialValue: inputInitialValue,
+                          keyboardType: inputKeyBoardType,
+                          obscureText: inputObscureText,
+                          style: inputTextStyles,
+                          decoration: inputDecorations,
+                          onChanged: onChanged,
+                          textCapitalization: inputTextCapitalization,
+                          enabled: inputEnabled,
+                        ),
                       ),
                     ),
               if (trailing != null) trailing!,

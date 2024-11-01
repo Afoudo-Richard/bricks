@@ -5,6 +5,8 @@ const Color primaryColor = Color(0xFF225DE8);
 const Color secondaryColor = Color(0xFFFFA500);
 const Color contentBackgroundColor = Color(0XFFE5E5E5);
 const Color allGameCardColor = Color.fromRGBO(230, 230, 230, 1);
+const Color darkSecondaryColor = Color(0XFF444444);
+const Color darkColor = Color(0XFF171717);
 
 const double paddingSize = 13;
 
@@ -22,4 +24,11 @@ TextStyle inputLabelTextStyle = TextStyle(
   fontSize: 12.sp,
   fontWeight: FontWeight.w400,
   color: primaryColor,
+);
+
+const bottomSheetShape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(16.0),
+    topRight: Radius.circular(16.0),
+  ),
 );

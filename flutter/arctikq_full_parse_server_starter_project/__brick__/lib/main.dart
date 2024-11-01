@@ -29,7 +29,9 @@ void main() async {
     await registerParseServer();
 
     final storage = await HydratedStorage.build(
-      storageDirectory: await getApplicationDocumentsDirectory(),
+      storageDirectory: kIsWeb
+          ? HydratedStorage.webStorageDirectory
+          : await getApplicationDocumentsDirectory(),
     );
 
     HydratedBlocOverrides.runZoned(

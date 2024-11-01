@@ -34,8 +34,8 @@ class User extends ParseUser with EquatableMixin implements ParseCloneable {
   String? get profileImage => get<String?>('profileImage');
   set profileImage(String? value) => set<String?>('profileImage', value);
 
-  Store? get store => get('store');
-  set store(Store? value) => set('store', value);
+  // Store? get store => get('store');
+  // set store(Store? value) => set('store', value);
 
   bool get isAdmin => get<bool?>('is_admin') ?? false;
   set isAdmin(bool value) => set<bool?>('is_admin', value);
@@ -51,7 +51,7 @@ class User extends ParseUser with EquatableMixin implements ParseCloneable {
         phone,
         gender,
         profileImage,
-        store,
+        // store,
         isAdmin,
         devices,
       ];
@@ -66,7 +66,7 @@ class User extends ParseUser with EquatableMixin implements ParseCloneable {
       'gender': gender,
       'profileImage': profileImage,
       'sessionToken': sessionToken,
-      'store': store?.toMap(),
+      // 'store': store?.toMap(),
       'isAdmin': isAdmin,
       'devices': devices,
     };
@@ -84,9 +84,9 @@ class User extends ParseUser with EquatableMixin implements ParseCloneable {
           map['profileImage'] != null ? map['profileImage'] as String : null
       ..sessionToken =
           map['sessionToken'] != null ? map['sessionToken'] as String : null
-      ..store = map['store'] != null
-          ? Store.fromMap(map['store'] as Map<String, dynamic>)
-          : null
+      // ..store = map['store'] != null
+      //     ? Store.fromMap(map['store'] as Map<String, dynamic>)
+      //     : null
       ..isAdmin = map['isAdmin'] as bool
       ..devices =
           map['devices'] != null ? map['devices'] as List<dynamic> : null;

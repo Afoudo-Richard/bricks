@@ -18,6 +18,8 @@ class App extends StatelessWidget {
           BlocProvider(create: (context) => AuthenticationBloc()),
           BlocProvider(create: (context) => UserBloc()),
           BlocProvider(create: (context) => AppBottomNavigationBarBloc()),
+          BlocProvider(create: (context) => SettingsBloc()),
+
         ],
         child: const AppView(),
       ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:{{project_name.snakeCase()}}/firebase_options.dart';
+// import 'package:{{project_name.snakeCase()}}/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -10,8 +10,8 @@ Future<void> onBackgroundMessage(RemoteMessage message) async {
   debugPrint(
       "#################################### app in background notification recieved ##################################");
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
 
   if (message.notification != null) {
     AwesomeNotifications().createNotification(
