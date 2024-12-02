@@ -1,42 +1,49 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'registration_bloc.dart';
 
-enum genderType { male, female, other }
+enum genderType { male, female }
 
 class RegistrationState extends Equatable {
   const RegistrationState({
     this.status = FormzStatus.pure,
-    this.firstname = const FirstName.pure(),
-    this.lastname = const LastName.pure(),
-    this.phone = const Phone.pure(),
-    this.email = const Email.pure(),
-    this.gender = const Gender.pure(),
-    this.password = const Password.pure(),
-    this.confirmPassword = const ConfirmPassword.pure(),
+    this.firstname = const InputText.pure(),
+    this.lastname = const InputText.pure(),
+    this.phone = const InputText.pure(),
+    this.email = const InputText.pure(),
+    this.gender = const InputText.pure(),
+    this.password = const InputText.pure(),
+    this.confirmPassword = const InputText.pure(),
+    this.confirmTermsAndCondition = false,
     this.errorMessage,
     this.errors,
+    this.selectedCountry,
   });
 
   final FormzStatus status;
-  final FirstName firstname;
-  final LastName lastname;
-  final Phone phone;
-  final Email email;
-  final Gender gender;
-  final Password password;
-  final ConfirmPassword confirmPassword;
+  final InputText firstname;
+  final InputText lastname;
+  final InputText phone;
+  final InputText email;
+  final InputText gender;
+  final InputText password;
+  final bool confirmTermsAndCondition;
+
+  final Ctry? selectedCountry;
+  final InputText confirmPassword;
   final String? errorMessage;
   final Map<String, dynamic>? errors;
 
   RegistrationState copyWith({
     FormzStatus? status,
-    FirstName? firstname,
-    LastName? lastname,
-    Phone? phone,
-    Email? email,
-    Gender? gender,
-    Password? password,
-    ConfirmPassword? confirmPassword,
+    InputText? firstname,
+    InputText? lastname,
+    InputText? phone,
+    InputText? email,
+    InputText? gender,
+    InputText? password,
+    bool? confirmTermsAndCondition,
+    Ctry? selectedCountry,
+    InputText? confirmPassword,
     String? errorMessage,
     Map<String, dynamic>? errors,
   }) {
@@ -48,6 +55,9 @@ class RegistrationState extends Equatable {
       email: email ?? this.email,
       gender: gender ?? this.gender,
       password: password ?? this.password,
+      confirmTermsAndCondition:
+          confirmTermsAndCondition ?? this.confirmTermsAndCondition,
+      selectedCountry: selectedCountry ?? this.selectedCountry,
       confirmPassword: confirmPassword ?? this.confirmPassword,
       errorMessage: errorMessage ?? this.errorMessage,
       errors: errors ?? this.errors,
@@ -64,5 +74,7 @@ class RegistrationState extends Equatable {
         password,
         confirmPassword,
         gender,
+        selectedCountry,
+        confirmTermsAndCondition,
       ];
 }

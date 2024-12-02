@@ -3,11 +3,13 @@ part of 'user_bloc.dart';
 @immutable
 abstract class UserEvent extends Equatable {
   const UserEvent();
+  @override
+  List<Object?> get props => [];
 }
 
 class UserChanged extends UserEvent {
   const UserChanged({
-    required this.user,
+    this.user,
   });
   final User? user;
 
@@ -23,3 +25,5 @@ class UserLanguangeChanged extends UserEvent {
   @override
   List<Object?> get props => [locale];
 }
+
+class UserImageDownload extends UserEvent {}

@@ -4,8 +4,8 @@ part of 'authentication_bloc.dart';
 abstract class AuthenticationEvent extends Equatable {
   const AuthenticationEvent();
 
-  // @override
-  // List<Object> get props => [];
+  @override
+  List<Object?> get props => [];
 }
 
 // class AuthenticationStatusChanged extends AuthenticationEvent {
@@ -25,11 +25,13 @@ class AuthenticationLogoutRequested extends AuthenticationEvent {
 class AuthenticationChanged extends AuthenticationEvent {
   const AuthenticationChanged({
     required this.authenticated,
+    required this.fcmToken,
   });
   final bool authenticated;
+  final String? fcmToken;
 
   @override
-  List<Object?> get props => [authenticated];
+  List<Object?> get props => [authenticated, fcmToken];
 }
 
 class AuthenticationUserChanged extends AuthenticationEvent {
@@ -66,3 +68,15 @@ class AuthenticationChecker extends AuthenticationEvent {
   @override
   List<Object> get props => [check];
 }
+
+class AuthenticationHasSeenMissionChanged extends AuthenticationEvent {
+  const AuthenticationHasSeenMissionChanged({
+    required this.value,
+  });
+  final bool value;
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class AuthenticationFetchUserData extends AuthenticationEvent {}

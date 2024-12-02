@@ -10,7 +10,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+// import 'firebase_options.dart';
 import 'package:{{project_name.snakeCase()}}/{{project_name.snakeCase()}}.dart';
 
 void main() async {
@@ -18,9 +18,9 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    // await Firebase.initializeApp(
+    //   options: DefaultFirebaseOptions.currentPlatform,
+    // );
     requestForNotificationPermission();
     initializeAwesomeNotification();
 

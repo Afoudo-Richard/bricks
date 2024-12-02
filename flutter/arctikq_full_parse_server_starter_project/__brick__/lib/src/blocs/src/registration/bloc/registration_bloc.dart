@@ -1,31 +1,53 @@
 import 'package:equatable/equatable.dart';
-import 'package:{{project_name.lowerCase()}}/{{project_name.lowerCase()}}.dart';
+import 'package:flutter/material.dart';
+import 'package:{{project_name.snakeCase()}}/{{project_name.snakeCase()}}.dart';
+import 'package:intl_phone_field/countries.dart';
+import 'package:validators/validators.dart';
 
 part 'registration_event.dart';
 part 'registration_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  RegistrationBloc({required this.{{project_name.camelCase()}}Api, required this.authenticationBloc,})
-      : super(const RegistrationState(gender: Gender.dirty("male"))) {
+  RegistrationBloc({
+    required this.authenticationBloc,
+  }) : super(const RegistrationState(gender: InputText.dirty("male"))) {
     on<RegistrationFirstNameChanged>(_onFirstNameChanged);
     on<RegistrationLastNameChanged>(_onLastNameChanged);
     on<RegistrationPhoneChanged>(_onPhoneChanged);
     on<RegistrationEmailChanged>(_onEmailChanged);
     on<RegistrationPasswordChanged>(_onPasswordChanged);
     on<RegistrationGenderChanged>(_onRegistrationGenderChanged);
-    on<RegistrationConfirmPasswordChanged>(_onConfirmPasswordChanged);
+    on<RegistrationSelectCountryChanged>(_onRegistrationSelectCountryChanged);
+    // on<RegistrationConfirmPasswordChanged>(_onConfirmPasswordChanged);
+    on<RegistrationConfirmTermsAndConditionsChanged>(
+        _onRegistrationConfirmTermsAndConditionsChanged);
     on<SubmitInputsChecked>(_onSubmitInputsChecked);
     on<RegistrationSubmitted>(_onSubmitted);
   }
 
-  final {{project_name.pascalCase()}}Api {{project_name.camelCase()}}Api;
   final AuthenticationBloc authenticationBloc;
+
+  void _onRegistrationSelectCountryChanged(
+    RegistrationSelectCountryChanged event,
+    Emitter<RegistrationState> emit,
+  ) {
+    emit(state.copyWith(
+      selectedCountry: event.country,
+    ));
+  }
+
+  void _onRegistrationConfirmTermsAndConditionsChanged(
+    RegistrationConfirmTermsAndConditionsChanged event,
+    Emitter<RegistrationState> emit,
+  ) {
+    emit(state.copyWith(confirmTermsAndCondition: event.value));
+  }
 
   void _onFirstNameChanged(
     RegistrationFirstNameChanged event,
     Emitter<RegistrationState> emit,
   ) {
-    final firstname = FirstName.dirty(event.firstname);
+    final firstname = InputText.dirty(event.firstname);
     emit(state.copyWith(
       firstname: firstname,
       status: Formz.validate([
@@ -34,7 +56,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         state.phone,
         state.email,
         state.password,
-        state.confirmPassword,
+        // state.confirmPassword,
       ]),
     ));
   }
@@ -43,7 +65,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationLastNameChanged event,
     Emitter<RegistrationState> emit,
   ) {
-    final lastname = LastName.dirty(event.lastname);
+    final lastname = InputText.dirty(event.lastname);
     emit(state.copyWith(
       lastname: lastname,
       status: Formz.validate([
@@ -52,7 +74,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         state.phone,
         state.email,
         state.password,
-        state.confirmPassword,
+        // state.confirmPassword,
       ]),
     ));
   }
@@ -61,7 +83,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationPhoneChanged event,
     Emitter<RegistrationState> emit,
   ) {
-    final phone = Phone.dirty(event.phone);
+    final phone =
+        InputText.dirty(event.phone, listOfPhoneNumberValidators(event.phone));
     emit(state.copyWith(
       phone: phone,
       status: Formz.validate([
@@ -70,7 +93,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         phone,
         state.email,
         state.password,
-        state.confirmPassword,
+        // state.confirmPassword,
       ]),
     ));
   }
@@ -79,7 +102,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationEmailChanged event,
     Emitter<RegistrationState> emit,
   ) {
-    final email = Email.dirty(event.email);
+    final email = InputText.dirty(event.email);
     emit(state.copyWith(
       email: email,
       status: Formz.validate([
@@ -88,7 +111,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         state.phone,
         email,
         state.password,
-        state.confirmPassword,
+        // state.confirmPassword,
       ]),
     ));
   }
@@ -97,7 +120,14 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationPasswordChanged event,
     Emitter<RegistrationState> emit,
   ) {
-    final password = Password.dirty(event.password);
+    final password = InputText.dirty(event.password, [
+      InputValidator(
+        isValid: matches(event.password,
+            r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"),
+        errorMessage:
+            "The password must be contain uppercase, lowercase and numeric",
+      ),
+    ]);
     emit(state.copyWith(
       password: password,
       status: Formz.validate([
@@ -106,46 +136,50 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         state.phone,
         state.email,
         password,
-        state.confirmPassword,
+        // state.confirmPassword,
       ]),
     ));
   }
 
-  void _onConfirmPasswordChanged(
-    RegistrationConfirmPasswordChanged event,
-    Emitter<RegistrationState> emit,
-  ) {
-    final confirmPassword = ConfirmPassword.dirty(
-      value: event.confirmPassword,
-      password: state.password.value,
-    );
-    emit(state.copyWith(
-      confirmPassword: confirmPassword,
-      status: Formz.validate([
-        state.firstname,
-        state.lastname,
-        state.phone,
-        state.email,
-        state.password,
-        confirmPassword,
-      ]),
-    ));
-  }
+  // void _onConfirmPasswordChanged(
+  //   RegistrationConfirmPasswordChanged event,
+  //   Emitter<RegistrationState> emit,
+  // ) {
+  //   final confirmPassword = InputText.dirty(event.confirmPassword, [
+  //     InputValidator(
+  //       isValid: equals(event.confirmPassword, state.password.value),
+  //       errorMessage: "Confirm passworm must be thesame as password",
+  //     ),
+  //   ]);
+  //   emit(state.copyWith(
+  //     confirmPassword: confirmPassword,
+  //     status: Formz.validate([
+  //       state.firstname,
+  //       state.lastname,
+  //       state.phone,
+  //       state.email,
+  //       state.password,
+  //       confirmPassword,
+  //     ]),
+  //   ));
+  // }
 
   void _onSubmitInputsChecked(
     SubmitInputsChecked event,
     Emitter<RegistrationState> emit,
   ) {
     emit(state.copyWith(
-      firstname: FirstName.dirty(state.firstname.value),
-      lastname: LastName.dirty(state.lastname.value),
-      phone: Phone.dirty(state.phone.value),
-      email: Email.dirty(state.email.value),
-      password: Password.dirty(state.password.value),
-      confirmPassword: ConfirmPassword.dirty(
-        value: state.confirmPassword.value,
-        password: state.password.value,
-      ),
+      firstname: InputText.dirty(state.firstname.value),
+      lastname: InputText.dirty(state.lastname.value),
+      phone: InputText.dirty(state.phone.value),
+      email: InputText.dirty(state.email.value),
+      password: InputText.dirty(state.password.value),
+      // confirmPassword: InputText.dirty(state.confirmPassword.value, [
+      //   InputValidator(
+      //     isValid: equals(state.confirmPassword.value, state.password.value),
+      //     errorMessage: "Confirm passworm must be thesame as password",
+      //   ),
+      // ]),
     ));
   }
 
@@ -153,7 +187,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     RegistrationGenderChanged event,
     Emitter<RegistrationState> emit,
   ) {
-    final gender = Gender.dirty(event.gender);
+    final gender = InputText.dirty(event.gender);
     emit(state.copyWith(
       gender: gender,
       status: Formz.validate([
@@ -163,7 +197,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
         state.phone,
         state.email,
         state.password,
-        state.confirmPassword,
+        // state.confirmPassword,
       ]),
     ));
   }
@@ -179,7 +213,8 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
           firstname: state.firstname.value,
           lastname: state.lastname.value,
           email: state.email.value,
-          phone: state.phone.value,
+          phone: "${state.selectedCountry!.dialCode}${state.phone.value}",
+          country: state.selectedCountry!,
           password: state.password.value,
           gender: state.gender.value.capitalizeFirst,
         );
@@ -204,11 +239,32 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     required String lastname,
     required String email,
     required String phone,
+    required Ctry country,
     required String gender,
     required String password,
   }) async {
+    final user = User(username: phone, password: password, email: email);
+    user
+      ..phone = phone
+      ..gender = gender
+      ..firstname = firstname
+      ..lastname = lastname
+      ..ctry = country
+      ..devices = [];
 
+    var response = await user.signUp();
+
+    if (response.success) {
+      var result = response.result;
+      return true;
+    } else {
+      debugPrint(response.error?.message);
+      throw ErrorRegistering(
+        message: response.error?.message ==
+                'Account already exists for this username.'
+            ? 'Account already exists for this phone.'
+            : response.error?.message,
+      );
+    }
   }
-
-
 }

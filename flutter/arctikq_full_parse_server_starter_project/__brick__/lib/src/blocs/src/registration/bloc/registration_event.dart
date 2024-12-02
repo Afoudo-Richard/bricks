@@ -70,6 +70,24 @@ class RegistrationGenderChanged extends RegistrationEvent {
   List<Object> get props => [gender];
 }
 
+class RegistrationSelectCountryChanged extends RegistrationEvent {
+  const RegistrationSelectCountryChanged(this.country);
+
+  final Ctry country;
+
+  @override
+  List<Object> get props => [country];
+}
+
+class RegistrationConfirmTermsAndConditionsChanged extends RegistrationEvent {
+  const RegistrationConfirmTermsAndConditionsChanged(this.value);
+
+  final bool value;
+
+  @override
+  List<Object> get props => [value];
+}
+
 class SubmitInputsChecked extends RegistrationEvent {}
 
 class RegistrationSubmitted extends RegistrationEvent {}
