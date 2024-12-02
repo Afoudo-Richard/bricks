@@ -35,6 +35,13 @@ class App extends StatelessWidget {
               userBloc: BlocProvider.of<UserBloc>(context),
             ),
           ),
+          BlocProvider(
+            create: (context) => ListCtryBloc()
+              ..add(
+                const ListCtryFetched(refresh: true),
+              ),
+            lazy: false,
+          ),
 
         ],
         child: const AppView(),

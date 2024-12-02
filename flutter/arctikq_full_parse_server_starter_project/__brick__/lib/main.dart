@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:{{project_name.snakeCase()}}/app.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'firebase_options.dart';
 import 'package:{{project_name.snakeCase()}}/{{project_name.snakeCase()}}.dart';

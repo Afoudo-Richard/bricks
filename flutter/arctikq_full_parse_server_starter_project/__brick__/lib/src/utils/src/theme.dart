@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:{{project_name.snakeCase()}}/{{project_name.snakeCase()}}.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData? appTheme(BuildContext context) {
   return ThemeData(

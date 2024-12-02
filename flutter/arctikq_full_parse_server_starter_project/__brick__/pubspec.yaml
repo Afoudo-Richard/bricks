@@ -41,6 +41,8 @@ dependencies:
   multi_image_crop: ^0.0.3
   upgrader: ^6.2.0
   google_fonts: ^4.0.3
+  intl_phone_field: ^3.2.0
+
 
 
 

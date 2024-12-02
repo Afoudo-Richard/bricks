@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 import 'package:{{project_name.snakeCase()}}/{{project_name.snakeCase()}}.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'package:equatable/equatable.dart';
 
 class User extends ParseUser with EquatableMixin implements ParseCloneable {

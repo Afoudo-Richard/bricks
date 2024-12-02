@@ -49,3 +49,13 @@ class ErrorUpdatingUser extends {{project_name.pascalCase()}}ApiError {
         );
 }
 
+
+class ErrorResponse extends {{project_name.pascalCase()}}ApiError {
+  ErrorResponse({
+    String? message,
+    Map<String, dynamic>? errors,
+  }) : super(
+          message: message,
+          errors: errors,
+        );
+}
