@@ -26,6 +26,18 @@ TextStyle inputLabelTextStyle = TextStyle(
   color: primaryColor,
 );
 
+TextStyle buttonTextStyle = TextStyle(
+  fontSize: 14.sp,
+  color: Colors.white,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle pageTitleTextStyle = TextStyle(
+  fontSize: 16.sp,
+  color: Colors.black,
+  fontWeight: FontWeight.w700,
+);
+
 const bottomSheetShape = RoundedRectangleBorder(
   borderRadius: BorderRadius.only(
     topLeft: Radius.circular(16.0),
