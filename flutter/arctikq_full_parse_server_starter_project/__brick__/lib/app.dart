@@ -4,6 +4,8 @@ import "package:flutter/material.dart";
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:{{project_name.snakeCase()}}/{{project_name.snakeCase()}}.dart';
+import 'package:upgrader/upgrader.dart';
+
 
 class App extends StatelessWidget {
   const App({
@@ -60,7 +62,8 @@ class _AppViewState extends State<AppView> {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(
+    return UpgradeAlert(
+      child: Sizer(
       builder: (context, orientation, deviceType) {
         return ConnectivityAppWrapper(
           app: MaterialApp(
@@ -114,6 +117,7 @@ class _AppViewState extends State<AppView> {
           ),
         );
       },
-    );
-  }
+    ),
+ 
+    ); }
 }

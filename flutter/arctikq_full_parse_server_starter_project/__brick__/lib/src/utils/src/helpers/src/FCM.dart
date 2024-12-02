@@ -18,7 +18,7 @@ Future<void> onBackgroundMessage(RemoteMessage message) async {
       content: NotificationContent(
         id: 10,
         channelKey: 'basic_channel',
-        title: message.notification?.title ?? "CarZoum",
+        title: message.notification?.title ?? "{{project_name.pascalCase()}}",
         body: message.notification?.body ?? "N/A",
         actionType: ActionType.Default,
       ),
@@ -49,7 +49,7 @@ class FCM {
     //   content: NotificationContent(
     //     id: 10,
     //     channelKey: 'basic_channel',
-    //     title: 'CarZoum Testing',
+    //     title: '{{project_name.pascalCase()}} Testing',
     //     body: 'Testing notification services',
     //     actionType: ActionType.Default,
     //   ),
@@ -79,7 +79,8 @@ class FCM {
           content: NotificationContent(
             id: 10,
             channelKey: 'basic_channel',
-            title: message.notification?.title ?? "CarZoum",
+            title:
+                message.notification?.title ?? "{{project_name.pascalCase()}}",
             body: message.notification?.body ?? "N/A",
             actionType: ActionType.Default,
           ),
@@ -109,7 +110,8 @@ class FCM {
           content: NotificationContent(
             id: 10,
             channelKey: 'basic_channel',
-            title: message.notification?.title ?? "CarZoum",
+            title:
+                message.notification?.title ?? "{{project_name.pascalCase()}}",
             body: message.notification?.body ?? "N/A",
             actionType: ActionType.Default,
           ),

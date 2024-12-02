@@ -76,7 +76,7 @@ void initializeAwesomeNotification() {
           channelKey: 'basic_channel',
           channelName: 'Basic notifications',
           channelDescription: 'Notification channel for basic tests',
-          defaultColor: Color(0xFF9D50DD),
+          defaultColor: primaryColor,
           ledColor: Colors.white)
     ],
     // Channel groups are only visual and are not required

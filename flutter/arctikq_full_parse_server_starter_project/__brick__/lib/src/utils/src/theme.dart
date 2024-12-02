@@ -5,12 +5,14 @@ import 'package:{{project_name.snakeCase()}}/{{project_name.snakeCase()}}.dart';
 ThemeData? appTheme(BuildContext context) {
   return ThemeData(
     platform: TargetPlatform.iOS,
-    fontFamily: 'Rubik',
-    popupMenuTheme: PopupMenuThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
-      ),
-    ),
+    // fontFamily: 'Rubik',
+    // popupMenuTheme: PopupMenuThemeData(
+    //   shape: RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.circular(4),
+    //   ),
+    // ),
+    textTheme: GoogleFonts.robotoTextTheme(Theme.of(context).textTheme),
+
     primaryColor: primaryColor,
     colorScheme: ColorScheme.fromSwatch(
       accentColor: primaryColor, // but now it should be declared like this
