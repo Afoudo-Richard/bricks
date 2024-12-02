@@ -15,10 +15,24 @@ class App extends StatelessWidget {
       create: (context) => {{project_name.pascalCase()}}Api(),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => AuthenticationBloc()),
+                    BlocProvider(create: (context) => ConfigBloc()..add(ConfigFetched())),
+
           BlocProvider(create: (context) => UserBloc()),
+                    BlocProvider(create: (context) => SettingsBloc()),
+
+          BlocProvider(
+              create: (context) => AuthenticationBloc(
+                    userBloc: BlocProvider.of<UserBloc>(context),
+                  ),),
           BlocProvider(create: (context) => AppBottomNavigationBarBloc()),
+           BlocProvider(create: (context) => OtpCountDownCheckBloc()),
+          BlocProvider(create: (context) => NotificationsBloc()),
           BlocProvider(create: (context) => SettingsBloc()),
+          BlocProvider(
+            create: (context) => UserImageBloc(
+              userBloc: BlocProvider.of<UserBloc>(context),
+            ),
+          ),
 
         ],
         child: const AppView(),

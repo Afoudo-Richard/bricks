@@ -8,3 +8,4 @@ export './src/device_helper.dart';
 export './src/FCM.dart';
 export './src/form_validators.dart';
 export './src/list_ext.dart';
+export './src/live_query_streams.dart';
