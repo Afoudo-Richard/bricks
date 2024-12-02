@@ -50,8 +50,8 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
       // final filePath = await downloadParseFile(state.user!.imageThumbnailUrl!);
       // debugPrint('Parsefile saved to: $filePath');
 
-      final fileDownloaded =
-          await _downloadImage(state.user!.imageThumbnailUrl!);
+      // final fileDownloaded =
+      //     await _downloadImage(state.user!.imageThumbnailUrl!);
 
       // User user = await ParseUser.currentUser();
 
