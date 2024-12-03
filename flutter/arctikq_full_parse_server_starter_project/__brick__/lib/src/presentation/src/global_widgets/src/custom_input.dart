@@ -70,7 +70,11 @@ class CustomInput extends StatelessWidget {
 
   TextStyle get inputTextStyles {
     return TextStyle(
-      fontSize: SizerUtil.deviceType == DeviceType.mobile ? 12.sp : 6.sp,
+      fontSize: kwS
+          ? 18.sp
+          : kwM
+              ? 7.sp
+              : 4.sp,
       fontWeight: FontWeight.w600,
       color: primaryColor,
     ).merge(inputTextStyle);
@@ -124,7 +128,7 @@ class CustomInput extends StatelessWidget {
                     )
                   : Expanded(
                       child: Transform.translate(
-                        offset: Offset(0, 3.sp),
+                        offset: Offset(0, kwS ? 3.sp : 0.sp),
                         child: TextFormField(
                           controller: controller,
                           minLines: inputMinLines,
@@ -132,7 +136,16 @@ class CustomInput extends StatelessWidget {
                           initialValue: inputInitialValue,
                           keyboardType: inputKeyBoardType,
                           obscureText: inputObscureText,
-                          style: inputTextStyles,
+                          style: inputTextStyle,
+                          // style: TextStyle(
+                          //   fontSize: Responsive.isMobile(context)
+                          //       ? 18.sp
+                          //       : Responsive.isTablet(context)
+                          //           ? 7.sp
+                          //           : 4.sp,
+                          //   fontWeight: FontWeight.w600,
+                          //   color: primaryColor,
+                          // ).merge(inputTextStyle),
                           decoration: inputDecorations,
                           onChanged: onChanged,
                           textCapitalization: inputTextCapitalization,
@@ -146,19 +159,20 @@ class CustomInput extends StatelessWidget {
         ),
         inputErrorText != null
             ? Padding(
-                padding: EdgeInsets.only(left: 10.sp, top: 3.sp),
+                padding: EdgeInsets.only(
+                  left: kwS ? 10.sp : 3.sp,
+                  top: kwS ? 3.sp : 1.sp,
+                ),
                 child: Text(
                   inputErrorText!,
                   style: TextStyle(
-                    fontSize: SizerUtil.deviceType == DeviceType.mobile
-                        ? 8.sp
-                        : 4.5.sp,
+                    fontSize: kwS ? 8.sp : 2.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.red,
                   ),
                 ),
               )
-            : const SizedBox.shrink(),
+            : 0.s,
       ],
     );
   }

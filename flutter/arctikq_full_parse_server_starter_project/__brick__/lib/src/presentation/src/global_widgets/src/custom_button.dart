@@ -28,7 +28,7 @@ class CustomButton extends StatelessWidget {
       style: ButtonStyle(
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
           padding: MaterialStateProperty.all(
-            padding ?? EdgeInsets.symmetric(vertical: 12.sp),
+            padding ?? EdgeInsets.symmetric(vertical: kwS ? 12.sp : 6.sp),
           ),
           side: MaterialStateProperty.all(border),
           backgroundColor:
